@@ -59,6 +59,28 @@ h2 {
 	border:1px solid #000;	
 }
 
+/* Menu - menu.html */
+#menu {
+	margin-bottom: 10px;
+}
+
+#menu .container, #menu .collapse.navbar-collapse {
+	padding-left: 0px;
+}
+
+#menu ul.nav.navbar-nav li a {
+	padding-top: 50px;
+	text-transform: uppercase;
+	color: #8C8C8C;
+}
+
+#menu ul.nav.navbar-nav.navbar-right li a {
+	padding-top: 10px;
+	text-transform: uppercase;
+	color: #8C8C8C;
+}
+
+
 /* Vereador - vereador.html */
 
 #vereador .picture {
