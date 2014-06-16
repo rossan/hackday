@@ -35,7 +35,7 @@ def _vereador(nome, json=False):
 	if not json:
 		return render_template('vereador.html', v=vereador)
 	elif json == 'json':
-		return jsonify(v)
+		return jsonify(vereador)
 
 
 
