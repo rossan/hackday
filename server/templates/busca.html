@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}<title>{{termo}} - Monitor Legislativo</title>{% endblock %}
+{% block body %}
+
+    <div class="container" id="busca">
+		<div class="row">
+  			<div class="col-md-3 sidebar-left">
+          <h1>Busca</h1>
+          <h2>{{termo}} ({{misc.size}} resultados)</h2> 
+          Exibindo de {{misc.pagina*misc.perpagina}} até {{misc.pagina*misc.perpagina+misc.perpagina}}
+  			</div>
+  			<div class="col-md-9 main">
+  				<div class="resultados">
+  					{% for p in projetos %}
+              <div class="projeto">
+                {% if p.ano|int >= 2000 %}
+                <h1><a href="{{url_for('_projeto', tipo=p.tipo, numero=p.numero, ano=p.ano) }}">{{p.tipo}} - {{p.numero}}/{{p.ano}}</a></h1>
+                {% else %}
+                <h1>{{p.tipo}} - {{p.numero}}/{{p.ano}}</h1>
+                {% endif %}
+                <quote>{{p.ementa}}</quote>
+                <ul>
+                  {% for assunto in p.assuntos %}
+                  <li>
+                    {{assunto}}
+                  </li>
+                  {% endfor %}
+                </ul>
+                <div class="encerramento">
+                  {{encerramento}}
+                </div>
+              </div>
+            {% endfor %}
+  			</div>
+        <div class="paginador">
+          {% if misc.pagina > 0 %}
+            <a href="{{url_for('busca', termo=termo, pagina=misc.pagina-1)}}">anterior</a>
+          {% endif %}
+          {% if misc.perpagina*misc.pagina+misc.perpagina < misc.size %}       
+            <a href="{{url_for('busca', termo=termo, pagina=misc.pagina+1)}}">próxima</a>
+          {% endif %}
+        </div>
+        
+      </div>
+
+    </div>
+  
+
+{% endblock %}
